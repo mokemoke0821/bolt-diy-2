@@ -1,0 +1,136 @@
+# プロジェクト基本設定
+project:
+  name: "Cline管理プロジェクト"
+  version: "1.0.0"
+  description: "Clineのソースコード管理および運用設定"
+  repository:
+    url: "https://github.com/mokemoke0821/Cline"
+    branch_rules:
+      main: "安定版（デプロイ可能な状態）"
+      feature: "新機能開発用"
+      fix: "バグ修正用"
+      hotfix: "緊急修正用"
+
+# 環境設定
+environment:
+  os: "Windows 11"
+  python:
+    version: ">=3.8"
+    dependencies_file: "requirements.txt"
+  nodejs:
+    version: ">=16.0.0"
+    package_manager: "npm"
+
+# ディレクトリ構造
+directory_structure:
+  root:
+    - ".gitignore"
+    - "README.md"
+    - "LICENSE"
+    - "CHANGELOG.md"
+    - ".env.example"
+  src:
+    python:
+      - "cline_python/main.py"
+      - "cline_python/claude_api.py"
+      - "tests/"
+      - "utils/token_utils.py"
+    nodejs:
+      - "cline_node/index.js"
+      - "cline_node/claudeApi.js"
+      - "tests/"
+      - "utils/tokenUtils.js"
+    shared:
+      - "templates/"
+      - "resources/"
+
+# Claude API設定
+claude_api:
+  model: "claude-3-5-sonnet-20241022"
+  max_tokens: 200000
+  retry:
+    max_attempts: 3
+    base_delay: 1.0
+    max_delay: 32.0
+  optimization:
+    enable_summary: true
+    max_history_tokens: 100000
+    important_keywords:
+      - "error"
+      - "critical"
+      - "warning"
+      - "summary"
+      - "結論"
+      - "まとめ"
+
+# セッション管理
+session_management:
+  auto_save:
+    enabled: true
+    interval_minutes: 5
+    max_backups: 10
+  summary:
+    max_length: 1000
+    include:
+      - "last_topic"
+      - "important_points"
+      - "pending_tasks"
+  storage:
+    path: "./sessions"
+    format: "json"
+
+# エラーハンドリング
+error_handling:
+  logging:
+    enabled: true
+    level: "INFO"
+    path: "./logs"
+    format: "json"
+  retry_strategy:
+    enabled: true
+    max_retries: 3
+    backoff_multiplier: 2
+    initial_delay: 1.0
+
+# 実行スクリプト設定
+scripts:
+  python:
+    run: "scripts/run_python.bat"
+    build: "scripts/build_python.bat"
+  nodejs:
+    run: "scripts/run_node.bat"
+    build: "scripts/build_node.bat"
+  setup:
+    file: "scripts/setup.bat"
+    actions:
+      - "install_dependencies"
+      - "setup_environment"
+      - "create_directories"
+
+# セキュリティ設定
+security:
+  api_keys:
+    storage: "environment_variables"
+  sensitive_files:
+    - ".env"
+    - "config/*.private.json"
+  git_ignore:
+    - "*.private.*"
+    - "sessions/"
+    - "logs/"
+    - ".env"
+
+# 品質管理
+quality:
+  testing:
+    unit_tests:
+      python: "src/python/tests"
+      nodejs: "src/node/tests"
+    integration_tests:
+      frequency: "manual"
+  documentation:
+    required_files:
+      - "README.md"
+      - "docs/api_usage.md"
+      - "docs/architecture.md"
+    update_frequency: "on_change"

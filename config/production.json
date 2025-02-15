@@ -1,0 +1,24 @@
+{
+  "server": {
+    "port": 8080,
+    "host": "0.0.0.0",
+    "env": "production"
+  },
+  "database": {
+    "host": "mongodb",
+    "port": 27017,
+    "name": "bolt_diy_prod"
+  },
+  "cors": {
+    "origin": "https://your-production-domain.com",
+    "enabled": true
+  },
+  "security": {
+    "jwtExpiresIn": "7d",
+    "bcryptRounds": 12
+  },
+  "logging": {
+    "level": "info",
+    "format": "combined"
+  }
+}

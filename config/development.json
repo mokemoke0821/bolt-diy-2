@@ -1,0 +1,24 @@
+{
+  "server": {
+    "port": 5000,
+    "host": "localhost",
+    "env": "development"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 27017,
+    "name": "bolt_diy_dev"
+  },
+  "cors": {
+    "origin": "http://localhost:3000",
+    "enabled": true
+  },
+  "security": {
+    "jwtExpiresIn": "1d",
+    "bcryptRounds": 10
+  },
+  "logging": {
+    "level": "debug",
+    "format": "combined"
+  }
+}

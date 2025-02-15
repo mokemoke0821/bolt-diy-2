@@ -1,0 +1,46 @@
+# 依存関係
+node_modules/
+__pycache__/
+*.pyc
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 環境設定
+.env
+.env.local
+.env.*.local
+.python-version
+.node-version
+
+# ビルド出力
+dist/
+build/
+*.egg-info/
+*.egg
+
+# IDE/エディタ
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# ログ
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# キャッシュ
+.cache/
+.npm/
+.eslintcache
+
+# テスト
+coverage/
+
+# その他
+.DS_Store
+Thumbs.db
